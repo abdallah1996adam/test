@@ -1,4 +1,4 @@
-//initating the server to connect to back-End
+//Initialisation du serveur pour se connecter au back-end
 import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:8585");
