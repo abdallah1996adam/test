@@ -22,22 +22,24 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   //   console.log("User is connected ", socket.id);
 
-  //when the user join a chat
+  //Lorsque l'utilisateur rejoint un chat
   socket.on("join_chat", (data) => {
     socket.join(data);
     // console.log(`User with ID: ${socket.id} joined ${data}`);
   });
-  //when the user send a message
+  //Lorsque l'utilisateur envoie un message
   socket.on("send_message", (data) => {
     socket.to(data.chatId).emit("receive_message", data);
     console.log(data);
   });
-  //when the user disconecct
+  //Lorsque l'utilisateur se déconnecte
   socket.on("Disconnected", () => {
     console.log("User Disconnected", socket.id);
   });
 });
 
+
+//lancer le serveur
 server.listen(process.env.SERVER_PORT, () => {
   console.log(`server is up and running on port ${process.env.SERVER_PORT}`);
 });
