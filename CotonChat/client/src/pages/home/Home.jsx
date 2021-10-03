@@ -10,7 +10,7 @@ export const Home = () => {
   const [userName, setUserName] = useState("");
   const [chatId, setChatId] = useState("");
   const [showChat, setShowChat] = useState(false);
-  //function that get called when the user join a chat
+  //Fonction qui est appelée lorsque l'utilisateur rejoint un chat
   const joinChat = () => {
     if (userName !== "" && chatId !== "") {
       socket.emit("join_chat", chatId);
@@ -23,10 +23,10 @@ export const Home = () => {
       <main className="Container">
         {!showChat ? (
           <div className="joinChatContainer">
-            <h3>Join a Chat</h3>
+            <h3>Rejoindre un chat</h3>
             <input
               type="text"
-              placeholder="Laura..."
+              placeholder="votre nom"
               onChange={(event) => setUserName(event.target.value)}
             />
             <input
@@ -34,7 +34,7 @@ export const Home = () => {
               placeholder="chat id"
               onChange={(event) => setChatId(event.target.value)}
             />
-            <button onClick={joinChat}>Join</button>
+            <button onClick={joinChat}>Rejoindre </button>
           </div>
         ) : (
           <Chat userName={userName} chat={chatId} />

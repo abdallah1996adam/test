@@ -8,7 +8,7 @@ import "./chat.css";
 const Chat = ({ chat, userName }) => {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  //function that get called when the user send a message
+  //Fonction qui est appelée lorsque l'utilisateur envoie un message
   const sendMessage = async () => {
     if (message !== "") {
       const messageData = {
@@ -25,20 +25,18 @@ const Chat = ({ chat, userName }) => {
       setMessage("");
     }
   };
-
+  //UseEffect qui est appelé chaque fois que le socket a changé
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
-      console.log(messageList);
 
-      //   console.log(data.message);
     });
   }, [socket]);
 
   return (
     <main className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>Discussion en ligne</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
